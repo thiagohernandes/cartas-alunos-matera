@@ -7,6 +7,19 @@ OBS: devido a incompatibilidade entre as versões do: Java 8 (que foi usado em fu
 e principalmente com o Spring Boot, tive que de última hora fazer o envio de e-mails utilizando o JavaMail para completar o processo
 ----------------------------------------------
 ------------ Instruções ------------  
+ATENÇÃO! É preciso colocar os dados da conta do Gmail na aplicação nas variáveis da classe: Utils.java
+
+Exemplo:
+static String contaGoogle = "fulano@gmail.com";
+static String senhaGoogle = "123456";
+
+Também, após logada na conta do Gmail, ir até: https://myaccount.google.com/lesssecureapps 
+e habilitar:
+Aplicativos menos seguros:
+Permitir aplicativos menos seguros: ATIVADA
+
+Em seguida, compilar e gerar o artefato para poder testar.
+No meu caso utilizei o Postman.
 
 git clone https://github.com/thiagohernandes/cartas-alunos-matera.git
 
