@@ -15,16 +15,18 @@ public class Aluno {
 	private String endereco;
 	private long cep;
 	private List<NotaDisciplina> notas;
+	private String email;
 	
 	public Aluno(){}
 	
-	public Aluno(int id, String nome, long cpf, String endereco, long cep, List<NotaDisciplina> notas) {
+	public Aluno(int id, String nome, long cpf, String endereco, long cep, List<NotaDisciplina> notas, String email) {
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.endereco = endereco;
 		this.cep = cep;		
 		this.notas = notas;
+		this.email = email;
 	}
 	
 	public int getId() {
@@ -64,6 +66,14 @@ public class Aluno {
 
 	public void setNotas(List<NotaDisciplina> notas) {
 		this.notas = notas;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

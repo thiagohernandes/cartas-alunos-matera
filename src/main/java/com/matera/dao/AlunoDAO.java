@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.matera.model.Aluno;
 import com.matera.model.Disciplina;
 import com.matera.model.NotaDisciplina;
+import com.matera.util.Utils;
 
 /**
  * Aluno DAO
@@ -17,15 +18,24 @@ public class AlunoDAO {
 	
 	private  List<Aluno> listAlunos = new ArrayList<Aluno>();
 	
+	/**
+	 * Método construtor - dados mock
+	 * */
 	public AlunoDAO() {
 		gerarDadosMock();
 	}
 	
+	/**
+	 * Add aluno
+	 * */
 	public void addAluno(Aluno aluno) {
 		aluno.setId(listAlunos.size()+1);
 		listAlunos.add(aluno);
 	}
 	
+	/**
+	 * Update aluno
+	 * */
 	public void updateAluno(Aluno aluno) {	
 		int idx = 0;
 		for(Aluno alunoItem : listAlunos) {
@@ -38,6 +48,9 @@ public class AlunoDAO {
 		}		
 	}
 	
+	/**
+	 * Delete aluno
+	 * */
 	public void removeAluno(Aluno aluno) {	
 		int idx = 0;
 		for(Aluno alunoItem : listAlunos) {
@@ -48,17 +61,47 @@ public class AlunoDAO {
 			idx++;
 		}		
 	}
-		
+	
+	/**
+	 * Método de retorno de todos alunos
+	 * */
 	public List<Aluno> todosAlunos(){
 		return listAlunos;
 	}
 	
+	/**
+	 * Método de retorno de notas e disciplinas de um determinado aluno
+	 * */
 	public List<Aluno> notasAluno(long cpf){
 		List<Aluno> filtered = listAlunos.stream().filter(aluno -> aluno.getCpf() == cpf)
 							   .collect(Collectors.toList());
 		return filtered;
 	}
 	
+	/**
+	 * Método de retorno de alunos com notas abaixo da média
+	 * */
+	public List<Aluno> notasAlunoEmail(){
+		List<Aluno> filtered = listAlunos.stream().filter(aluno -> aluno.getNotas()
+																	    .stream()
+																	    .anyMatch(notaDisciplina->notaDisciplina.getNota() < 7))
+				   .collect(Collectors.toList());
+		return filtered;
+	}
+	
+	/**
+	 * Método de envio de e-mails com o retorno dos envios processados
+	 * */
+	public int enviarEmails(){
+		List<Aluno> filtered = listAlunos.stream().filter(aluno -> aluno.getNotas().stream().anyMatch(notaDisciplina->notaDisciplina.getNota() < 7))
+				   .collect(Collectors.toList());
+		Utils util = new Utils();
+		return util.processEmail(filtered);
+	}
+	
+	/**
+	 * Método mock
+	 * */
 	protected void gerarDadosMock() {
 		// Disciplinas
 		Disciplina disciplina1 = new Disciplina(1,"Matemática");
@@ -74,7 +117,7 @@ public class AlunoDAO {
 		notasDisciplinasAluno1.add(notaDisciplina1A);
 		notasDisciplinasAluno1.add(notaDisciplina1B);
 		notasDisciplinasAluno1.add(notaDisciplina1C);		
-		Aluno aluno1 = new Aluno(1,"João",123456789,"Rua x, no. 123",15775000,notasDisciplinasAluno1);
+		Aluno aluno1 = new Aluno(1,"João",123456789,"Rua x, no. 123",15775000,notasDisciplinasAluno1,"hernandes_sp@yahoo.com.br");
 		listAlunos.add(aluno1);
 		
 		// Aluno 2
@@ -85,7 +128,7 @@ public class AlunoDAO {
 		notasDisciplinasAluno2.add(notaDisciplina2A);
 		notasDisciplinasAluno2.add(notaDisciplina2B);
 		notasDisciplinasAluno2.add(notaDisciplina2C);		
-		Aluno aluno2 = new Aluno(2,"Franscisco",987456321,"Rua z, no. 456",17922000,notasDisciplinasAluno2);
+		Aluno aluno2 = new Aluno(2,"Franscisco",987456321,"Rua z, no. 456",17922000,notasDisciplinasAluno2,"franscisco@hotmail.com");
 		listAlunos.add(aluno2);
 		// Aluno 3
 		List<NotaDisciplina> notasDisciplinasAluno3 = new ArrayList<>();
@@ -95,7 +138,7 @@ public class AlunoDAO {
 		notasDisciplinasAluno3.add(notaDisciplina3A);
 		notasDisciplinasAluno3.add(notaDisciplina3B);
 		notasDisciplinasAluno3.add(notaDisciplina3C);		
-		Aluno aluno3 = new Aluno(3,"Vanessa",1478963211,"Rua z, no. 456",14337000,notasDisciplinasAluno3);
+		Aluno aluno3 = new Aluno(3,"Vanessa",1478963211,"Rua z, no. 456",14337000,notasDisciplinasAluno3,"vanessa@terra.com.br");
 		listAlunos.add(aluno3);
 	}
 }
