@@ -3,12 +3,7 @@ Processo seletivo - Java back-end Matera
 
 Thiago Hernandes de Souza
 ----------------------------------------------
-Programa de montagem de lanches
-----------------------------------------------
-----------------------------------------------
 OBS: devido a incompatibilidade entre as versões do: Java 8 (que foi usado em funções), Wildfly 10 
-----------------------------------------------
-----------------------------------------------
 e principalmente com o Spring Boot, tive que de última hora fazer o envio de e-mails utilizando o JavaMail para completar o processo
 ----------------------------------------------
 ------------ Instruções ------------  
