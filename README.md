@@ -39,7 +39,7 @@ diretório "widlfly10/standalone/deployments"
 6.1 - http://localhost:8080/cartas-alunos-matera/api/alunos/todos - retorna todos os alunos e respectivas notas/disciplinas
 6.2 - http://localhost:8080/cartas-alunos-matera/api/alunos/1478963211/notas - retorna as notas/disciplinas de um aluno específico por CPF
 (CPFs fictícios cadastrados em memória: 123456789, 987456321 e 1478963211)
-6.3 http://localhost:8080/cartas-alunos-matera/api/alunos/notabaixa - retorna os alunos que possuem notas abaixo da média
+6.3 http://localhost:8080/cartas-alunos-matera/api/alunos/notabaixa - retorna os alunos que possuem notas abaixo da média - usar o CPF: 123456789 que contém uma nota abaixo da média
 6.4 http://localhost:8080/cartas-alunos-matera/api/alunos/maladireta - processamento do envio de e-mails
 
 
