@@ -73,8 +73,9 @@ public class AlunoDAO {
 	 * Método de retorno de notas e disciplinas de um determinado aluno
 	 * */
 	public List<Aluno> notasAluno(long cpf){
-		List<Aluno> filtered = listAlunos.stream().filter(aluno -> aluno.getCpf() == cpf)
-							   .collect(Collectors.toList());
+		List<Aluno> filtered = listAlunos.stream()
+										 .filter(aluno -> aluno.getCpf() == cpf)
+										 .collect(Collectors.toList());
 		return filtered;
 	}
 	
@@ -93,8 +94,9 @@ public class AlunoDAO {
 	 * Método de envio de e-mails com o retorno dos envios processados
 	 * */
 	public int enviarEmails(){
-		List<Aluno> filtered = listAlunos.stream().filter(aluno -> aluno.getNotas().stream().anyMatch(notaDisciplina->notaDisciplina.getNota() < 7))
-				   .collect(Collectors.toList());
+		List<Aluno> filtered = listAlunos.stream().filter(aluno -> aluno.getNotas()
+																	    .stream().anyMatch(notaDisciplina->notaDisciplina.getNota() < 7))
+				   														.collect(Collectors.toList());
 		Utils util = new Utils();
 		return util.processEmail(filtered);
 	}
